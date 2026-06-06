@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Project Data
+data/
+
+# Processed Data
+data/processed/
+
+# Model Artifacts
+models/
+*.pkl
+*.joblib
+
+# VS Code
+.vscode/
