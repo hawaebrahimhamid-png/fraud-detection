@@ -128,3 +128,127 @@ Logistic Regression
 Random Forest
 XGBoost
 Model evaluation (Accuracy, Precision, Recall, ROC-AUC)
+
+# Task 2: Model Building and Training
+
+## Objective
+
+The objective of Task 2 was to build, train, and evaluate machine learning models for fraud detection on two highly imbalanced datasets:
+
+1. E-commerce Fraud Detection Dataset (`Fraud_Data.csv`)
+2. Credit Card Fraud Detection Dataset (`creditcard.csv`)
+
+The task focused on developing baseline and ensemble classification models, handling class imbalance, and comparing model performance using appropriate evaluation metrics.
+
+---
+
+## Data Preparation
+
+### E-commerce Fraud Dataset
+
+* Loaded the processed dataset generated in Task 1.
+* Separated features and target variable (`class`).
+* Removed non-numeric and non-predictive columns.
+* Applied stratified train-test split to preserve class distribution.
+* Applied SMOTE on the training set only to address class imbalance.
+
+### Credit Card Fraud Dataset
+
+* Loaded the credit card transaction dataset.
+* Separated features and target variable (`Class`).
+* Applied stratified train-test split.
+* Applied SMOTE on the training set only.
+
+---
+
+## Baseline Model: Logistic Regression
+
+Logistic Regression was selected as the baseline model due to its simplicity and interpretability.
+
+### Training
+
+* Trained on the SMOTE-resampled training data.
+* Used `max_iter=1000` to improve convergence.
+
+### Evaluation Metrics
+
+* F1 Score
+* AUC-PR (Average Precision Score)
+* Confusion Matrix
+* Classification Report
+
+---
+
+## Ensemble Model: Random Forest
+
+Random Forest was selected as the ensemble model because of its strong performance on classification tasks and its ability to capture non-linear relationships.
+
+### Hyperparameters
+
+* `n_estimators=100`
+* `max_depth=10`
+* `random_state=42`
+
+### Evaluation Metrics
+
+* F1 Score
+* AUC-PR
+* Confusion Matrix
+* Classification Report
+
+---
+
+## Cross Validation
+
+Stratified K-Fold Cross Validation was performed using:
+
+* Number of folds: 5
+* Shuffle: True
+* Random State: 42
+
+The mean and standard deviation of F1 scores were reported to estimate model stability and generalization performance.
+
+---
+
+## Model Comparison
+
+The models were compared using:
+
+* F1 Score
+* AUC-PR
+
+These metrics were chosen because fraud detection datasets are highly imbalanced and overall accuracy can be misleading.
+
+Comparison tables were generated for both datasets to identify the best-performing model.
+
+---
+
+## Model Selection
+
+### E-commerce Fraud Dataset
+
+Random Forest achieved better performance than Logistic Regression based on F1 Score and AUC-PR and was selected as the final model.
+
+### Credit Card Fraud Dataset
+
+Random Forest outperformed Logistic Regression and was selected as the final model.
+
+---
+
+## Saved Models
+
+The following trained models were saved:
+
+* `models/random_forest_fraud.pkl`
+* `models/random_forest_creditcard.pkl`
+
+These models will be used in Task 3 for explainability and interpretation using SHAP.
+
+---
+
+## Key Takeaways
+
+* SMOTE successfully addressed severe class imbalance.
+* Random Forest consistently outperformed Logistic Regression.
+* F1 Score and AUC-PR provided more reliable evaluation than accuracy.
+* The selected models demonstrated strong capability for fraud detection across both datasets.
